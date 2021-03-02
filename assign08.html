@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Advanced Javascript</title>
+    <link rel='stylesheet' type='text/css' href='assign08.css'>
+
+    <style>
+         input:invalid {
+        border: 2px dashed red;
+      }
+
+      input:valid {
+        border: 2px solid black;
+      }
+    </style>
+    
+    <script>
+        function clearAll(){
+                document.getElementById("orderForm").reset();
+                document.getElementById("first_name").focus();
+
+        }
+
+    //Hopefully this will let me make the checkbox elements. Need help on this part.//
+        function updateTotal(){
+            var product1, product2, product3, product4, product;
+            if (document.getElementById("product1").checked == true ){
+                 product1 = document.getElementById("product1").value = 10;
+            }
+            if (document.getElementById("product2").checked == true ){
+                 product1 = document.getElementById("product2").value = 8;
+            }
+            if (document.getElementById("product3").checked == true ){
+                 product1 = document.getElementById("product3").value = 15;
+            }
+            if (document.getElementById("product4").checked == true ){
+                 product1 = document.getElementById("product4").value = 150;
+            }
+
+             product2 = document.getElementById("product2").value;
+             product3 = document.getElementById("product3").value;
+             product4 = document.getElementById("product4").value;
+
+            var total= product1+product2+product3+product4;
+            document.getElementById("total").innerHTML = total;
+        }
+
+        function submitForm(){
+            document.getElementById("validate").addEventListener("onClick", updateTotal());
+            document.getElementById("orderForm").submit();
+            
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <h1>Javascript Assignment 2</h1>
+
+    <h3>Red outlined boxes are required</h3>
+    <form id="orderForm">
+    <!-- Validation for first and last names could be 'no numbers'(/D) or maybe 'no whitespaces'(/*s). Try using 'onchange' for the validations -->
+    <label> Please enter your first name:</label>
+    <input type="text", id = "first_name" required pattern = "\D*">
+    <br><br>
+    <label> Please enter your last name: </label>
+    <input type="text", id = "last_name" required pattern= "\D*">
+    <br><br>
+    <!-- This gives an error message when the field is empty- but also when there's spaces in the address.-->
+    <label> Please enter your address: </label>
+    <input type="text", id = "address" required pattern="\*s">
+    <br><br>
+    <!--Phone number requires validation; it could just be ensuring no letters are entered. Length contraints as well. How do you do the warning again?-->
+    <label> Please enter your Phone Number:</label>
+    <input type="text" id="phone" name = "phone" required minlength="10" maxlength="10" required pattern="">
+    <br><br>
+    <h2>Products</h2>
+    <!--Products here, inputs via checkboxes. 4 or more items-->
+    
+    <input type="checkbox" id= "product1" name= "product1" onchange="updateTotal()">
+    <label for="product1"> Power Stone (10.00)</label>
+    <br><br>
+    <input type="checkbox" id= "product2" name= "product2" onchange="updateTotal()">
+    <label for="product2"> Reality Stone (8.00)</label>
+    <br><br>
+    <input type="checkbox" id= "product3" name= "product3" onchange="updateTotal()">
+    <label for="product3"> Space Stone (8.00)</label>
+    <br><br>
+    <input type="checkbox" id= "product4" name= "product4" onchange="updateTotal()">
+    <label for="product4"> Soul Stone (15.00)</label>
+    <br><br>
+    <input type="checkbox" id= "product5" name= "product5" onchange="updateTotal()">
+    <label for="product5"> Infinity Gauntlet (150.00)</label>
+    
+    
+
+        <br><br><br>
+    <input type="text" id= "total" name = "total" >
+    <label for= "total">Total Cost</label>
+    <!--onchange update total...-->
+
+    <br><br>
+    <h2>Payment Information</h2>
+    <!--Radio switches for selecting the credit card type-->
+    <input type="radio" id="card" name= "visa" value="visa">
+    <label for="card">Visa</label>
+    <input type="radio" id="card" name= "mastercard" value="mastercard">
+    <label for="card">Mastercard</label>
+    <input type="radio" id="card" name= "americanExpress" value="americanExpress">
+    <label for="card">American Express</label>
+    <br><br>
+    <input type="text" id="creditnumber" name="creditnumber" required pattern="^(([0-9]{4})\s){4}))" minlength="16" maxlength="16">
+    <label for= "creditnumber">Enter your credit card number( but not really. Seriously. )</label>
+    <br><br>
+    <!--Not sure how to validate this with a regular expression. What i have here might work, it might not-->
+    <input type="text" id="creditexp" name="creditexp" required pattern="([0-9]{2})\/(20[20-25])">
+    <label for= "creditexp">Enter your card expiration date in month/year form</label>
+    <br><br>
+    </form>
+    <br><br>
+
+    
+    <button id="clear" name="clear" onclick="clearAll()">Clear All</button>
+    <br><br>
+    <input type="button" id="validate" name="validate" onclick="submitForm()">Validate</button>
+    <br><br>
+    
+
+
+
+
+ </form>
+
+
+</body>
+</html>
